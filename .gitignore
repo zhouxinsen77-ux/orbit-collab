@@ -1,0 +1,21 @@
+# Local state, user configuration and optional runtimes never belong in source.
+/data/
+/work/
+/tools/
+/orbit.json
+/.env
+.env.*
+!.env.example
+/projects.json
+/vault/
+/PROJECT.md
+__pycache__/
+*.py[cod]
+*.sqlite*
+*.db
+*.log
+*.pem
+*.key
+.DS_Store
+.venv/
+dist/

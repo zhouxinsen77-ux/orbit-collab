@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d11">
+  <meta name="description" content="连接本机项目与知识库的多 Agent 分工协作工作台。">
+  <title>轨道协作 Orbit · 多 Agent 工作平台</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/orbit-theme.css">
+  <link rel="stylesheet" href="/orbit-overview.css">
+  <link rel="stylesheet" href="/knowledge-loop.css">
+  <link rel="icon" href="/showcase-mark.svg" type="image/svg+xml">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="主导航">
+      <a class="brand" href="#overview" aria-label="轨道协作首页"><span class="brand-mark"><img src="/showcase-mark.svg" width="32" height="32" alt=""></span><span>轨道协作<small>ORBIT WORKSPACE</small></span></a>
+      <div class="workspace-label"><span class="workspace-avatar">我</span><span>个人工作空间<small>本机 · 私有资料</small></span><span class="online-dot"></span></div>
+      <div class="nav-label">工作空间</div>
+      <nav id="navigation"></nav>
+      <div class="sidebar-note"><span class="note-orbit">↗</span><strong>把目标交给你的团队</strong><p>分工执行、独立审查，让每一次协作都有结果。</p><button id="new-task-button" type="button" class="button primary">新建协作任务 <span aria-hidden="true">＋</span></button><span class="note-source">连接你的项目与 Obsidian 知识库</span></div>
+      <div class="sidebar-bottom"><span class="connection-dot"></span><span id="connection-label">连接本机服务…</span><button id="refresh-button" class="icon-button" aria-label="刷新工作台" title="刷新工作台">↻</button></div>
+    </aside>
+    <main class="main-shell">
+      <header class="topbar"><div class="breadcrumb"><span>个人工作空间</span><span class="slash">/</span><strong id="breadcrumb-current">协作总览</strong></div><div class="topbar-meta"><span id="today"></span><span class="local-tag"><i></i>本机运行</span><span class="user-avatar">我</span></div></header>
+      <div id="offline-banner" class="offline-banner" role="status" hidden></div>
+      <section class="page" id="page" aria-live="polite"><div class="loading-state"><span class="spinner"></span><p>正在连接工作空间…</p></div></section>
+      <footer class="page-footer"><span>本机资料保留 · 仅向所选执行器发送任务所需上下文</span><span>Orbit / 开源版</span></footer>
+    </main>
+  </div>
+  <div id="modal-root"></div><div id="toast" role="status" class="toast" hidden></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "projects": [
+    {
+      "key": "welcome",
+      "name": "Orbit 入门示例",
+      "root": "project",
+      "summary": "原创演示项目：体验任务分工、知识引用、独立审查与记忆复核。"
+    }
+  ]
+}

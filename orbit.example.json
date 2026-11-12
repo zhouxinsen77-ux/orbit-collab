@@ -1,0 +1,13 @@
+{
+  "data_dir": "data",
+  "vault": "examples/vault",
+  "project_index": "examples/projects.json",
+  "codex_bin": "codex",
+  "node_bin": "node",
+  "harness_entry": "tools/harness-runtime/node_modules/@deepseek-ai/dsh/lib/bin.js",
+  "deepseek_env_file": ".env",
+  "codebuddy_entry": "tools/workbuddy/node_modules/.bin/codebuddy",
+  "autoloop_dir": "tools/agent-autoloop",
+  "port": 8765,
+  "autoloop_port": 3350
+}

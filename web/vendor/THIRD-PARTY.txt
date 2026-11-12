@@ -1,0 +1,7 @@
+Three.js 0.186.0
+MIT license; complete copyright and terms in THREE-LICENSE.txt.
+Source: https://registry.npmjs.org/three/-/three-0.186.0.tgz
+
+Only the Three.js files required by the Orbit visual overview are bundled.
+Per-file SHA-256 values and exact source versions are recorded in manifest.json.
+Third-party files retain their original license and are not relicensed by Orbit.
