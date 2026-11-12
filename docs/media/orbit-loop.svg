@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1040" viewBox="0 0 1440 1040" role="img" aria-labelledby="title description">
+  <title id="title">Orbit 轨道协作：从 Wiki 检索到做梦记忆的协作闭环</title>
+  <desc id="description">Wiki 和 Obsidian 资料经 RAG 检索进入 Orbit 任务编排，Agents 产物经过独立交付审查，未通过时由用户触发有限重试。已结束且未取消任务的保存证据可供做梦提炼，候选经过独立记忆复核才启用，并在同项目下次任务中回到 RAG 召回。MCP 知识咨询接口为完整版已有能力，公开版暂未提供；外部聊天调用咨询不会自动创建任务。用户审阅交付并反馈，修复应用由用户决定，有害经验可停用。</desc>
+  <defs>
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#183d32"/><stop offset="1" stop-color="#0d2922"/></linearGradient>
+    <marker id="mint-arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M2 2L10 6L2 10" fill="none" stroke="#44856b" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="orange-arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto"><path d="M2 2L10 6L2 10" fill="none" stroke="#bd6c37" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="gray-arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M2 2L10 6L2 10" fill="none" stroke="#8c9d92" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  </defs>
+  <rect width="1440" height="1040" rx="30" fill="#f8f7f2"/>
+  <rect x=".75" y=".75" width="1438.5" height="1038.5" rx="29.25" fill="none" stroke="#e2e5dc" stroke-width="1.5"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <!-- Heading -->
+    <g transform="translate(61 57)" stroke="#285d49" fill="none" stroke-width="2.2">
+      <circle r="16"/><ellipse rx="27" ry="9" transform="rotate(-35)"/><circle cx="20" cy="-15" r="3.7" fill="#285d49" stroke="#f8f7f2" stroke-width="2"/>
+    </g>
+    <text x="105" y="69" fill="#183d32" font-size="38" font-weight="700" letter-spacing="-.6">让一次协作，成为下一次的经验。</text>
+    <text x="51" y="116" fill="#6c7a6f" font-size="24">Wiki × RAG × 多 Agent × 做梦记忆</text>
+    <rect x="1190" y="46" width="198" height="44" rx="22" fill="#e9efe5"/>
+    <text x="1289" y="76" text-anchor="middle" fill="#3f6954" font-size="22" font-weight="600">Orbit 工作流总览</text>
+
+    <!-- Main work path -->
+    <g fill="none" stroke="#44856b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#mint-arrow)">
+      <path d="M293 270H332"/>
+      <path d="M600 270H642"/>
+      <path d="M1040 270H1092"/>
+      <path d="M1244 472V535"/>
+    </g>
+
+    <!-- Wiki -->
+    <g transform="translate(52 158)">
+      <rect width="240" height="234" rx="19" fill="#fffefb" stroke="#d6ddd1" stroke-width="1.6"/>
+      <rect x="20" y="20" width="45" height="45" rx="12" fill="#ecf1e7"/>
+      <g transform="translate(42 42)" fill="none" stroke="#557b61" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M0-11C-5-15-12-15-16-12V10C-10 7-5 9 0 12C5 9 10 7 16 10V-12C12-15 5-15 0-11ZM0-11V12"/></g>
+      <text x="80" y="51" fill="#385d47" font-size="22" font-weight="600">01 · 资料</text>
+      <text x="22" y="106" fill="#203b2d" font-size="29" font-weight="700">Wiki / Obsidian</text>
+      <text x="22" y="152" fill="#67786b" font-size="23">项目约定 · 方法</text>
+      <text x="22" y="188" fill="#67786b" font-size="23">排障资料</text>
+    </g>
+
+    <!-- RAG -->
+    <g transform="translate(340 158)">
+      <rect width="260" height="234" rx="19" fill="#f0f5eb" stroke="#aec6aa" stroke-width="1.6"/>
+      <rect x="20" y="20" width="45" height="45" rx="12" fill="#deead7"/>
+      <g transform="translate(42 42)" fill="none" stroke="#4b7554" stroke-width="1.8" stroke-linecap="round"><path d="M-13-11H2M-13-4H-3M-13 3H-5"/><circle cx="7" cy="5" r="7"/><path d="M12 10L17 15"/></g>
+      <text x="80" y="51" fill="#385d47" font-size="22" font-weight="600">02 · 检索</text>
+      <text x="22" y="106" fill="#203b2d" font-size="29" font-weight="700">RAG 分块检索</text>
+      <text x="22" y="152" fill="#5d755e" font-size="23">重叠片段 · 相关匹配</text>
+      <text x="22" y="188" fill="#5d755e" font-size="23">来源路径 · 原文行号</text>
+    </g>
+
+    <!-- The central engine -->
+    <g transform="translate(650 158)">
+      <rect x="0" y="6" width="390" height="314" rx="24" fill="#183d32" opacity=".09"/>
+      <rect width="390" height="314" rx="24" fill="url(#core)"/>
+      <rect x="1" y="1" width="388" height="312" rx="23" fill="none" stroke="#82b19a" stroke-opacity=".42" stroke-width="1.5"/>
+      <text x="26" y="52" fill="#a8d2b7" font-size="22" font-weight="600">03 · 任务编排</text>
+      <text x="26" y="110" fill="#f4f8ed" font-size="47" font-weight="700" letter-spacing="-1">Orbit <tspan font-size="29" fill="#c0dcc8" font-weight="500">轨道协作</tspan></text>
+      <path d="M26 134H364" stroke="#91baa4" stroke-opacity=".24"/>
+      <g fill="#244a3b" stroke="#8bb69b" stroke-opacity=".18">
+        <rect x="24" y="157" width="162" height="55" rx="10"/>
+        <rect x="204" y="157" width="162" height="55" rx="10"/>
+        <rect x="24" y="231" width="162" height="55" rx="10"/>
+        <rect x="204" y="231" width="162" height="55" rx="10"/>
+      </g>
+      <g fill="#e5f1df" font-size="24" font-weight="550" text-anchor="middle">
+        <text x="105" y="192">目标与验收</text><text x="285" y="192">任务依赖</text>
+        <text x="105" y="266">角色分工</text><text x="285" y="266">产物记录</text>
+      </g>
+    </g>
+
+    <!-- Agent adapters -->
+    <g transform="translate(1100 158)">
+      <rect width="288" height="314" rx="19" fill="#fffefb" stroke="#b4c0ad" stroke-width="1.6" stroke-dasharray="7 6"/>
+      <text x="22" y="46" fill="#203b2d" font-size="29" font-weight="700">Agents</text>
+      <text x="22" y="80" fill="#71816f" font-size="22">按角色选择执行器</text>
+      <g fill="#f0f2e9" stroke="#e0e5d8"><rect x="20" y="101" width="248" height="43" rx="9"/><rect x="20" y="154" width="248" height="43" rx="9"/><rect x="20" y="207" width="248" height="43" rx="9"/></g>
+      <g text-anchor="middle" fill="#3b5541" font-size="23"><text x="144" y="130">Codex</text><text x="144" y="183">DeepSeek Harness</text><text x="144" y="236">WorkBuddy · 文本</text></g>
+      <text x="144" y="288" text-anchor="middle" fill="#75826f" font-size="22">Grok / 豆包 · 人工交接</text>
+    </g>
+
+    <!-- The strong outer loop reconnects activated memories to RAG, never to Wiki source text. -->
+    <path d="M80 877H48Q28 877 28 857V442Q28 420 50 420H446Q470 420 470 397" fill="none" stroke="#44856b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#mint-arrow)"/>
+    <rect x="84" y="401" width="330" height="36" rx="18" fill="#f8f7f2"/>
+    <text x="249" y="426" text-anchor="middle" fill="#387557" font-size="23" font-weight="650">同项目 · 下一次任务召回</text>
+
+    <!-- External consultation has a distinct version boundary. -->
+    <path d="M556 401V455" fill="none" stroke="#8c9d92" stroke-width="2" stroke-linecap="round" marker-start="url(#gray-arrow)" marker-end="url(#gray-arrow)"/>
+    <g transform="translate(52 466)">
+      <rect width="548" height="239" rx="19" fill="#faf8f0" stroke="#b5baaa" stroke-width="1.6" stroke-dasharray="7 6"/>
+      <text x="22" y="44" fill="#465d48" font-size="27" font-weight="700">MCP · 外部聊天的知识入口</text>
+      <rect x="21" y="64" width="426" height="39" rx="8" fill="#f5e9d8"/>
+      <text x="34" y="91" fill="#98723e" font-size="22" font-weight="600">完整版已有 · 公开版暂未提供</text>
+      <text x="23" y="147" fill="#6a7764" font-size="24">外部聊天 ↔ 知识 / RAG 咨询</text>
+      <path d="M22 170H526" stroke="#e1e2d4"/>
+      <text x="23" y="207" fill="#818874" font-size="22">查询已有知识，不自动创建执行任务</text>
+    </g>
+
+    <!-- Human control and final review -->
+    <path d="M845 538V482" fill="none" stroke="#44856b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#mint-arrow)"/>
+    <text x="866" y="514" fill="#607d66" font-size="22">提出目标</text>
+    <g transform="translate(650 548)">
+      <rect width="390" height="157" rx="19" fill="#eaf2e4" stroke="#abc7a6" stroke-width="1.5"/>
+      <g transform="translate(37 37)" fill="none" stroke="#4d7858" stroke-width="2"><circle cy="-6" r="7"/><path d="M-13 14C-13 0 13 0 13 14" stroke-linecap="round"/></g>
+      <text x="67" y="46" fill="#2f5b3b" font-size="27" font-weight="700">你 · 保留最终决定</text>
+      <text x="23" y="87" fill="#55775a" font-size="23">审阅交付 · 反馈效果 · 有害停用</text>
+      <text x="23" y="126" fill="#6f836a" font-size="22">源项目只读；应用修复由你决定</text>
+    </g>
+    <path d="M1092 643H1048" fill="none" stroke="#44856b" stroke-width="2.5" stroke-linecap="round" marker-end="url(#mint-arrow)"/>
+    <text x="1069" y="623" text-anchor="middle" fill="#71836e" font-size="20">交付</text>
+    <g transform="translate(1100 548)">
+      <rect width="288" height="157" rx="19" fill="#fffefb" stroke="#d3dacd" stroke-width="1.6"/>
+      <text x="21" y="43" fill="#2f4f39" font-size="26" font-weight="700">04 · 独立交付审查</text>
+      <text x="21" y="85" fill="#6d7d68" font-size="23">对照目标 · 检查证据</text>
+      <rect x="17" y="102" width="254" height="37" rx="8" fill="#fbefdf"/>
+      <text x="144" y="128" text-anchor="middle" fill="#b16c38" font-size="22" font-weight="600">未通过：你触发重试</text>
+    </g>
+    <!-- Orange branch is explicit and bounded; never an unconditional automatic retry. -->
+    <path d="M1100 588H1088Q1072 588 1072 572V410Q1072 395 1087 395H1095" fill="none" stroke="#bd6c37" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#orange-arrow)"/>
+    <text x="1120" y="513" fill="#6d816b" font-size="22">已保存产物</text>
+
+    <!-- User feedback becomes evidence for the next memory review. -->
+    <path d="M960 705V724H1070V833H1092" fill="none" stroke="#8c9d92" stroke-width="2.3" stroke-dasharray="5 5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#gray-arrow)"/>
+    <text x="983" y="761" text-anchor="middle" fill="#6c7d68" font-size="22">真实反馈</text>
+
+    <!-- Memory lane -->
+    <text x="80" y="766" fill="#2f5a3d" font-size="29" font-weight="700">做梦记忆</text>
+    <text x="245" y="766" fill="#78876e" font-size="23">从任务证据中提炼，让下次有据可循</text>
+    <path d="M1244 711V795" fill="none" stroke="#44856b" stroke-width="2.8" stroke-linecap="round" marker-end="url(#mint-arrow)"/>
+    <rect x="1110" y="738" width="268" height="35" rx="17.5" fill="#f8f7f2"/>
+    <text x="1244" y="763" text-anchor="middle" fill="#668063" font-size="22">任务已结束 · 且未取消</text>
+
+    <g transform="translate(1100 805)">
+      <rect width="288" height="143" rx="18" fill="#fffefb" stroke="#d4ddce" stroke-width="1.6"/>
+      <text x="22" y="42" fill="#34523c" font-size="26" font-weight="700">05 · 保存证据</text>
+      <text x="22" y="82" fill="#70816a" font-size="22">检查 · 审查 · 产物 · 反馈</text>
+      <text x="22" y="116" fill="#8b917d" font-size="22">成功与失败，均可复盘</text>
+    </g>
+    <g transform="translate(760 805)">
+      <rect width="288" height="143" rx="18" fill="#f0f4e9" stroke="#c8d8be" stroke-width="1.6"/>
+      <text x="22" y="42" fill="#34523c" font-size="26" font-weight="700">06 · 做梦提炼</text>
+      <text x="22" y="82" fill="#70816a" font-size="22">有据的方法 / 教训</text>
+      <text x="22" y="116" fill="#7f8b72" font-size="22">附适用条件 · 可零条</text>
+    </g>
+    <g transform="translate(420 805)">
+      <rect width="288" height="143" rx="18" fill="#edf3e6" stroke="#bdd2b2" stroke-width="1.6"/>
+      <text x="22" y="42" fill="#34523c" font-size="26" font-weight="700">07 · 独立记忆复核</text>
+      <text x="22" y="82" fill="#688261" font-size="22">核对证据与适用条件</text>
+      <text x="22" y="116" fill="#7b8b6e" font-size="22">不通过，保留为候选</text>
+    </g>
+    <g transform="translate(80 805)">
+      <rect width="288" height="143" rx="18" fill="#e2efdb" stroke="#86b387" stroke-width="1.8"/>
+      <text x="22" y="42" fill="#285d37" font-size="26" font-weight="700">08 · 启用项目经验</text>
+      <text x="22" y="82" fill="#537c50" font-size="22">带来源 · 限同项目召回</text>
+      <text x="22" y="116" fill="#6e8961" font-size="22">证据变化，停止使用</text>
+    </g>
+    <g fill="none" stroke="#44856b" stroke-width="3.5" stroke-linecap="round" marker-end="url(#mint-arrow)">
+      <path d="M1093 877H1056"/><path d="M753 877H716"/><path d="M413 877H376"/>
+    </g>
+
+    <!-- Short explanatory footer, without implying automatic application or model independence. -->
+    <path d="M80 978H1388" stroke="#dde3d5" stroke-width="1.4"/>
+    <text x="80" y="1014" fill="#335b3d" font-size="25" font-weight="600">查资料 → 做任务 → 审查 → 总结教训 → 下次复用</text>
+    <text x="1388" y="1013" text-anchor="end" fill="#8b9581" font-size="20">独立复核指独立角色调用</text>
+  </g>
+</svg>
