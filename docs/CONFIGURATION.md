@@ -18,6 +18,8 @@
 
 两端口须不同，范围1024—65535。配置修改后重启。若修改 `data_dir` 或端口，先用旧配置停止原实例，再改配置启动。目录包含空格时，在终端给路径加引号。
 
+DeepSeek 示例使用 `deepseek-flash`；可通过 `DEEPSEEK_MODEL` 选择账号可用模型，当前名称以 [官方模型列表](https://api-docs.deepseek.com/api/list-models/) 为准。
+
 项目索引格式：
 
 ```json
