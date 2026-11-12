@@ -130,16 +130,60 @@ class WorkbenchTests(unittest.TestCase):
         self.assertFalse(any(c[0] == 'reviewer' for c in runner.calls))
 
     def test_pause_preserves_current_work_and_prevents_new_downstream(self):
-        runner = FakeRunner(slow=True)
-        app = self.app(runner)
+        class GatedRunner(FakeRunner):
+            def __init__(self):
+                super().__init__()
+                self.entered = {node: threading.Event() for node in ('research', 'design', 'combine')}
+                self.release = threading.Event()
+
+            def run(self, role, prompt, schema, workdir, cancel_event, timeout, executor_id='codex'):
+                if role not in {'planner', 'reviewer'}:
+                    node_id = Path(workdir).parts[-2]
+                    self.entered[node_id].set()
+                    if node_id in {'research', 'design'}:
+                        while not self.release.wait(.02):
+                            if cancel_event.is_set():
+                                raise Cancelled('测试取消')
+                return super().run(role, prompt, schema, workdir, cancel_event, timeout, executor_id)
+
+        class PauseObservedBench(TestBench):
+            def __init__(self, *args, **kwargs):
+                self.scheduler_paused = threading.Event()
+                self.scheduler_returned = threading.Event()
+                super().__init__(*args, **kwargs)
+
+            def _wait_ready(self, ident):
+                observes_pause = (threading.current_thread().name == 'run-' + ident
+                                  and self.get(ident)['status'] == 'paused')
+                if observes_pause:
+                    self.scheduler_paused.set()
+                try:
+                    return super()._wait_ready(ident)
+                finally:
+                    if observes_pause:
+                        self.scheduler_returned.set()
+
+        runner = GatedRunner()
+        app = PauseObservedBench(self.root, runner, self.index)
+        self.apps.append(app)
         ident = self.create(app)['id']
-        self.wait(app, ident, lambda r: sum(t['status'] == 'running' for t in r['tasks']) == 2)
+        # A node is marked running before _call's pause check. Wait for actual
+        # executor entry, then keep both in flight until the pause is observed.
+        self.assertTrue(runner.entered['research'].wait(4), 'research executor did not enter')
+        self.assertTrue(runner.entered['design'].wait(4), 'design executor did not enter')
         app.action(ident, 'pause')
+        self.assertTrue(app.scheduler_paused.wait(4), 'scheduler did not reach the pause barrier')
+        runner.release.set()
         self.wait(app, ident, lambda r: sum(t['status'] == 'completed' for t in r['tasks']) == 2, timeout=4)
-        self.assertEqual(app.get(ident)['status'], 'paused')
-        self.assertFalse(any('/combine/' in c[1] for c in runner.calls))
+        paused = app.get(ident)
+        self.assertEqual(paused['status'], 'paused')
+        self.assertFalse(app.scheduler_returned.is_set(), 'scheduler passed the pause barrier')
+        self.assertEqual(next(t for t in paused['tasks'] if t['id'] == 'combine')['status'], 'pending')
+        self.assertFalse(runner.entered['combine'].is_set())
         app.action(ident, 'resume')
         self.assertEqual(self.wait(app, ident)['status'], 'completed')
+        self.assertTrue(app.scheduler_returned.is_set())
+        self.assertTrue(runner.entered['combine'].is_set())
 
     def test_review_failure_not_marked_complete_and_retry_limited(self):
         runner = FakeRunner(revise=True)

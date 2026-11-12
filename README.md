@@ -22,6 +22,8 @@ Orbit 是一个独立的本地多 Agent 协作平台：任务图与角色分工�
 
 首发面向 **macOS / Linux、Python 3.9+**。macOS 已实际验收；已配置 Linux CI 隔离测试，运行结果见仓库 Actions，真实执行器和 WSL2 需要各环境验证。Windows 原生暂不支持。网页不需要 Node；可选 Agent / 事件组件需要 Node.js 24+。
 
+如果电脑还没有 Python，请先从 [Python 官网](https://www.python.org/downloads/) 安装；可选组件使用 [Node.js 24+](https://nodejs.org/)。
+
 在 GitHub 点击 **Code → Download ZIP** 并解压，或执行：
 
 ```sh
